@@ -1,0 +1,8 @@
+name: Troll
+attr:
+  str: 35
+  agi: 15
+  con: 100
+  int: 8
+  wis: 8
+  cha: 2

@@ -1,0 +1,8 @@
+name: Orc
+attr:
+  str: 20
+  agi: 10
+  con: 15
+  int: 8
+  wis: 5
+  cha: 1

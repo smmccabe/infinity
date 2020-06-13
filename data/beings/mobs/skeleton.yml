@@ -1,0 +1,8 @@
+name: "Skeleton"
+attr:
+  str: 5
+  agi: 3
+  con: 6
+  int: 1
+  wis: 1
+  cha: 1

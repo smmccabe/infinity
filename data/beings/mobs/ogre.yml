@@ -1,0 +1,8 @@
+name: Ogre
+attr:
+  str: 50
+  agi: 12
+  con: 150
+  int: 10
+  wis: 20
+  cha: 10

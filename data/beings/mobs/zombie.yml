@@ -1,0 +1,8 @@
+name: Zombie
+attr:
+  str: 10
+  agi: 2
+  con: 20
+  int: 1
+  wis: 1
+  cha: 1

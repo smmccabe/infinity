@@ -1,0 +1,23 @@
+start:
+  damage: 1
+  armour: 0
+increment:
+  damage: 1
+  armour: 0
+type: Weapon
+subtype: Sword
+materials:
+  - Copper
+  - Bronze
+  - Iron
+  - Steel
+  - Titanium
+  - Mithral
+bases:
+  - Dagger
+  - Dirk
+  - Rapier
+  - Sword
+  - Broadsword
+  - Claymore
+  - Katana
