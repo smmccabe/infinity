@@ -1,0 +1,19 @@
+name: Tainted
+multiply:
+  dmg: 0
+  arm: 0
+  str: 0
+  agi: 0
+  con: 0
+  int: 0
+  wis: 0
+  cha: 0
+add:
+  dmg: 0
+  arm: 0
+  str: 0
+  agi: 0
+  con: 0
+  int: 0
+  wis: 0
+  cha: -1
