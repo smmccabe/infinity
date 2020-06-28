@@ -1,0 +1,20 @@
+start:
+  damage: 0
+  armour: 2
+increment:
+  damage: 0
+  armour: 2
+type: Armour
+subtype: Metal
+materials:
+  - Copper
+  - Bronze
+  - Iron
+  - Steel
+  - Titanium
+  - Mithral
+  - Dragon
+bases:
+  - Chainmail
+  - Scalemail
+  - Platemail

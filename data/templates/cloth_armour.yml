@@ -1,0 +1,19 @@
+start:
+  damage: 0
+  armour: 1
+increment:
+  damage: 0
+  armour: 1
+type: Armour
+subtype: Cloth
+materials:
+  - Cloth
+  - Hide
+  - Leather
+  - Studded Leather
+  - Elven Silk
+bases:
+  - Shirt
+  - Jerken
+  - Cloak
+  - Robe
