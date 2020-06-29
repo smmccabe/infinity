@@ -41,7 +41,7 @@ class util {
     }
 
     static loadBeing(id) {
-      return this.being[id];
+      return this.beings[id];
     }
 }
 

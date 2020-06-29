@@ -1,0 +1,19 @@
+mobs:
+  - name: Goblin
+    level: 1
+  - name: Goblin
+    level: 2
+  - name: Goblin
+    level: 3
+  - name: Skeleton
+    level: 2
+  - name: Skeleton
+    level: 4
+  - name: Orc
+    level: 1
+  - name: Orc
+    level: 2
+  - name: Orc 
+    level: 4
+  - name: Orc
+    level: 10

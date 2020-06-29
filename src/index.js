@@ -28,28 +28,20 @@ screen.title = 'Infinity';
 // Create a box perfectly centered horizontally and vertically.
 let boxBattle = blessed.log({
   top: '',
-  left: '75%',
+  left: '25%',
   width: '25%',
-  height: '50%',
+  height: '100%',
   tags: true,
   border: {
     type: 'line'
-  },
-  style: {
-    border: {
-      fg: '#f0f0f0'
-    },
-    hover: {
-      bg: 'green'
-    }
   }
 });
 
 let boxLoot = blessed.log({
-  top: '50%',
+  top: '',
   left: '75%',
   width: '25%',
-  height: '50%',
+  height: '100%',
   border: {
     type: 'line'
   }
@@ -57,9 +49,19 @@ let boxLoot = blessed.log({
 
 let boxHero = blessed.box({
   top: '0%',
+  left: '0%',
+  width: '25%',
+  height: '100%',
+  border: {
+    type: 'line'
+  }
+});
+
+let boxMob = blessed.box({
+  top: '0%',
   left: '50%',
   width: '25%',
-  height: '50%',
+  height: '100%',
   border: {
     type: 'line'
   }
@@ -68,6 +70,7 @@ let boxHero = blessed.box({
 screen.append(boxBattle);
 screen.append(boxLoot);
 screen.append(boxHero);
+screen.append(boxMob);
 // Quit on Escape, q, or Control-C.
 screen.key(['escape', 'q', 'C-c'], function(ch, key) {
   return process.exit(0);
@@ -77,13 +80,24 @@ screen.key(['escape', 'q', 'C-c'], function(ch, key) {
 screen.render();
 
 async function main() {
+  let offset = 0;
+  const quest = Load.quests[0];
+
+  let i = 0;
+  const cap = quest.mobs.length;
   while (true) {
-    const mobTemplate = Load.randomMob(hero.getPower());
-    const mob = new Being(mobTemplate.name, mobTemplate.attr);
+    if(i == cap) {
+      i = 0;
+      offset += cap;
+    }
+
+    const mobBase = quest.mobs[i];
+    const mobTemplate = Load.loadMobByName(mobBase.name);
+    const mob = new Being(mobTemplate.name, mobTemplate.attr, mobBase.level + offset);
 
     const result = Battle.battle(hero, mob);
     if (result) {
-      boxBattle.log(`${hero.name} defeated ${mob.name}`);
+      boxBattle.log(colors.green(`${hero.name} defeated ${mob.name} (${mob.level})`));
 
       const power = mob.getPower();
       hero.addXp(power);
@@ -94,24 +108,17 @@ async function main() {
 
         hero.addToInv(loot.id);
       }
+      i += 1;
     } else {
-      boxBattle.log(`${mob.name} defeated ${hero.name}`);
+      boxBattle.log(colors.red(`${mob.name} (${mob.level}) defeated ${hero.name}`));
+      i = 0;
+      if(offset > 0) {
+        offset -= cap;
+      }
     }
 
-    const sheet = hero.getSheet();
-    let heroData = `Level: ${hero.getLevel()}\n`;
-    heroData += 'ATTRIBUTES\n';
-    heroData += `Strength: ${sheet.attr.str}\n`;
-    heroData += `Agility: ${sheet.attr.agi}\n`;
-    heroData += `Constitution: ${sheet.attr.con}\n`;
-    heroData += `Intelligence: ${sheet.attr.int}\n`;
-    heroData += `Wisdom: ${sheet.attr.wis}\n`;
-    heroData += `Charisma: ${sheet.attr.cha}\n`;
-
-    heroData += 'ITEMS\n';
-    heroData += `Weapon: ${sheet.weapon.name}\n`;
-    heroData += `Armour: ${sheet.armour.name}\n`;
-    boxHero.setContent(heroData);
+    boxHero.setContent(hero.getSheet());
+    boxMob.setContent(mob.getSheet());
 
     await sleep(500);
   }

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import empty from 'is-empty';
+import _ from 'lodash';
 import util from './util.mjs';
 import Item from './item.mjs';
 
@@ -10,9 +11,6 @@ class being {
     this.age = 16;
     this.xp = 0;
     this.level = 1;
-    while (this.level < level) {
-      this.levelUp();
-    }
     this.attr = {
       str: 10,
       agi: 10,
@@ -22,7 +20,7 @@ class being {
       cha: 10,
     };
     if (!empty(attr)) {
-      this.attr = attr;
+      this.attr = _.clone(attr);
     }
 
     this.weapon = new Item('Empty', 'Empty', 0, 0);
@@ -32,6 +30,10 @@ class being {
     this.minor = util.randomAttr();
 
     this.inventory = [];
+
+    while (this.level < level) {
+      this.levelUp();
+    }
   }
 
   addXp(xp) {
@@ -177,11 +179,24 @@ class being {
   }
 
   getSheet() {
-    return {
-      attr: this.getAttr(),
-      weapon: this.getWeapon(),
-      armour: this.getArmour(),
-    };
+    let sheet = `${this.name}\n`;
+    sheet += `Level: ${this.getLevel()}\n`;
+    sheet += `Damage: ${this.getDamage()}\n`;
+    sheet += `Defense: ${this.getDefense()}\n`;
+    sheet += `Dodge: ${this.getDodge()}\n`;
+    sheet += 'ATTRIBUTES\n';
+    sheet += `Strength: ${this.getAttr().str}\n`;
+    sheet += `Agility: ${this.getAttr().agi}\n`;
+    sheet += `Constitution: ${this.getAttr().con}\n`;
+    sheet += `Intelligence: ${this.getAttr().int}\n`;
+    sheet += `Wisdom: ${this.getAttr().wis}\n`;
+    sheet += `Charisma: ${this.getAttr().cha}\n`;
+
+    sheet += 'ITEMS\n';
+    sheet += `Weapon: ${this.getWeapon().outputColored()}\n`;
+    sheet += `Armour: ${this.getArmour().outputColored()}\n`;
+
+    return sheet;
   }
 }
 

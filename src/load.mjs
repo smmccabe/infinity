@@ -15,6 +15,8 @@ class load {
       mobs: [],
     };
 
+    static quests = [];
+
     static loadFiles(dir) {
       const nodes = [];
       fs.readdirSync(dir).forEach((file) => {
@@ -38,6 +40,7 @@ class load {
       this.loadItemPrefixes();
       this.loadItemSuffixes();
       this.loadMobs();
+      this.loadQuests();
     }
 
     static loadWeapons() {
@@ -61,12 +64,20 @@ class load {
       this.beings.mobs.sort((a, b) => this.powerBeing(a) - this.powerBeing(b));
     }
 
+    static loadMobByName(name) {
+      return this.beings.mobs.filter( (being) => being.name === name)[0];
+    }
+
     static loadItemPrefixes() {
       this.items.prefixes = this.loadFiles('data/items/prefixes');
     }
 
     static loadItemSuffixes() {
       this.items.suffixes = this.loadFiles('data/items/suffixes');
+    }
+
+    static loadQuests() {
+      this.quests = this.loadFiles('data/quests');
     }
 
     static randomItem(power) {
