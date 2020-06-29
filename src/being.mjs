@@ -38,11 +38,15 @@ class being {
 
   addXp(xp) {
     this.xp += xp;
-    const levelUp = 1000 + (1000 * (this.level / 30));
+    const levelUp = this.getLevelUp();
     if (this.xp >= levelUp) {
       this.xp -= levelUp;
       this.levelUp();
     }
+  }
+
+  getLevelUp() {
+    return 1000 + (1000 * (this.level / 30));
   }
 
   getDamage() {

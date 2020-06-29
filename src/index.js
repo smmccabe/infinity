@@ -57,6 +57,24 @@ let boxHero = blessed.box({
   }
 });
 
+let levelBar = blessed.progressbar({
+  height: 1,
+  filled: 50,
+  pch: ' ',
+  style: {
+    bg: 'grey',
+    bar: {
+      bg: 'blue',
+    }
+  }
+});
+boxHero.append(levelBar);
+
+let boxHeroSub = blessed.box({
+  top: 1
+});
+boxHero.append(boxHeroSub);
+
 let boxMob = blessed.box({
   top: '0%',
   left: '50%',
@@ -101,6 +119,7 @@ async function main() {
 
       const power = mob.getPower();
       hero.addXp(power);
+      levelBar.setProgress((hero.xp / hero.getLevelUp()) * 100);
 
       if (util.getRandomInt(10) < 2) {
         const loot = Loot.roll(power / 10);
@@ -117,7 +136,8 @@ async function main() {
       }
     }
 
-    boxHero.setContent(hero.getSheet());
+    boxHeroSub.setContent(hero.getSheet());
+
     boxMob.setContent(mob.getSheet());
 
     await sleep(500);
