@@ -1,19 +1,21 @@
 mobs:
   - name: Goblin
     level: 1
-  - name: Goblin
-    level: 2
-  - name: Goblin
-    level: 3
   - name: Skeleton
-    level: 2
-  - name: Skeleton
-    level: 4
-  - name: Orc
+    level: 1
+  - name: Hobgoblin
+    level: 1
+  - name: Zombie
     level: 1
   - name: Orc
-    level: 2
-  - name: Orc 
-    level: 4
-  - name: Orc
-    level: 10
+    level: 1
+  - name: Bug Bear
+    level: 1
+  - name: Troll
+    level: 1
+  - name: Ogre
+    level: 1
+  - name: Giant
+    level: 1
+  - name: Dragon
+    level: 1
