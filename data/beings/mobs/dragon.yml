@@ -1,8 +1,8 @@
 name: Dragon
 attr:
-  str: 100
-  agi: 30
-  con: 500
-  int: 100
-  wis: 200
-  cha: 75
+  str: 10
+  agi: 3
+  con: 50
+  int: 10
+  wis: 20
+  cha: 7.5

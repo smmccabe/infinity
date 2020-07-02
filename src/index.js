@@ -140,7 +140,7 @@ async function main() {
 
     boxMob.setContent(mob.getSheet());
 
-    await sleep(500);
+    await sleep(100);
   }
 }
 

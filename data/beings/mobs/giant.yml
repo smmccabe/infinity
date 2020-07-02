@@ -1,8 +1,8 @@
 name: Giant
 attr:
-  str: 100
-  agi: 10
-  con: 200
-  int: 5
-  wis: 8
-  cha: 5
+  str: 10
+  agi: 1
+  con: 20
+  int: 0.5
+  wis: 0.8
+  cha: 0.5

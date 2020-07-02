@@ -1,8 +1,8 @@
 name: Bug Bear
 attr:
-  str: 20
-  agi: 10
-  con: 20
-  int: 10
-  wis: 10
-  cha: 5
+  str: 2
+  agi: 1
+  con: 2
+  int: 1
+  wis: 1
+  cha: 0.5

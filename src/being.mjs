@@ -10,24 +10,30 @@ class being {
     this.name = name;
     this.age = 16;
     this.xp = 0;
-    this.level = 1;
-    this.attr = {
-      str: 10,
-      agi: 10,
-      con: 10,
-      int: 10,
-      wis: 10,
-      cha: 10,
+    this.level = 0;
+    this.baseAttr = {
+      str: 1,
+      agi: 1,
+      con: 1,
+      int: 1,
+      wis: 1,
+      cha: 1,
     };
     if (!empty(attr)) {
-      this.attr = _.clone(attr);
+      this.baseAttr = _.clone(attr);
     }
+
+    this.attr = {
+      str: 0,
+      agi: 0,
+      con: 0,
+      int: 0,
+      wis: 0,
+      cha: 0,
+    };
 
     this.weapon = new Item('Empty', 'Empty', 0, 0);
     this.armour = new Item('Empty', 'Empty', 0, 0);
-
-    this.major = util.randomAttr();
-    this.minor = util.randomAttr();
 
     this.inventory = [];
 
@@ -113,7 +119,8 @@ class being {
 
   getPower() {
     const attr = this.getAttr();
-    let power = attr.str + attr.agi + attr.con + attr.int + attr.wis + attr.cha;
+    // int,wis and cha commented out since they currently don't do anything.
+    let power = attr.str + attr.agi + attr.con; // + attr.int + attr.wis + attr.cha;
     power += this.getWeapon().getDamage();
     power += this.getArmour().getArmour();
 
@@ -167,24 +174,18 @@ class being {
   }
 
   levelUpStats() {
-    const random = util.getRandomInt(10);
-
-    if (random < 2) {
-      this.attr[this.major] += 1;
-      return;
-    }
-
-    if (random < 3) {
-      this.attr[this.minor] += 1;
-      return;
-    }
-
-    this.attr[util.randomAttr()] += 1;
+    this.attr.str += this.baseAttr.str * 10;
+    this.attr.agi += this.baseAttr.agi * 10;
+    this.attr.con += this.baseAttr.con * 10;
+    this.attr.int += this.baseAttr.int * 10;
+    this.attr.wis += this.baseAttr.wis * 10;
+    this.attr.cha += this.baseAttr.wis * 10;
   }
 
   getSheet() {
     let sheet = `${this.name}\n`;
     sheet += `Level: ${this.getLevel()}\n`;
+    sheet += `Health: ${this.getHealth()}\n`;
     sheet += `Damage: ${this.getDamage()}\n`;
     sheet += `Defense: ${this.getDefense()}\n`;
     sheet += `Dodge: ${this.getDodge()}\n`;

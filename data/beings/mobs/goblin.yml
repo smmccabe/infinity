@@ -1,8 +1,8 @@
 name: "Goblin"
 attr:
-  str: 2
-  agi: 10
-  con: 3
-  int: 2
-  wis: 2
-  cha: 1
+  str: 0.2
+  agi: 1
+  con: 0.3
+  int: 0.2
+  wis: 0.2
+  cha: 0.1

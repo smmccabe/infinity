@@ -1,8 +1,8 @@
 name: "Hobgoblin"
 attr:
-  str: 8
-  agi: 10
-  con: 8
-  int: 5
-  wis: 4
-  cha: 2
+  str: 0.8
+  agi: 1
+  con: 0.8
+  int: 0.5
+  wis: 0.4
+  cha: 0.2

@@ -48,6 +48,10 @@ class item {
   getPower() {
     let power = 0;
     for (const attr in this.attr) {
+      // Temporarily disabled as these attributes don't do anything yet.
+      if(attr === 'int' || attr === 'wis' || attr === 'cha') {
+        continue;
+      }
       power += this.attr[attr];
     }
     return power;
